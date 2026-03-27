@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster Pro | Day 3</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="todo-container">
+    <div class="search-wrapper">
+<div class="search-container" id="searchContainer">
+    <input type="text" id="searchInput" placeholder="Search tasks..." oninput="searchTasks()">
+    <div class="search-icon" onclick="toggleSearch()">🔍</div>
+</div>
+    </div>
+
+    <header>
+        <h1>TaskMaster <span>Pro</span></h1>
+        <p id="date-display"></p>
+    </header>
+
+<div class="progress-section">
+    <div class="manual-progress-container">
+        <p>Today's Progress 🎯</p>
+        <input type="range" min="0" max="100" value="0" class="slider" id="manualRange" oninput="updateManualBar()">
+        <span id="rangeVal">0%</span>
+    </div>
+
+    <div id="activeTaskDisplay" class="active-task-box">
+        Select a task to start working...
+    </div>
+
+    <div class="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+</div>
+    <div class="input-section">
+        <select id="categorySelect" class="category-select">
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+        </select>
+        <input type="text" id="taskInput" placeholder="New task..." autocomplete="off">
+        <button id="addBtn" onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <div class="footer-actions">
+        <span id="taskCount">0 tasks pending</span>
+        <button onclick="clearAll()" class="clear-all">Clear All</button>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

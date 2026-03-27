@@ -1,0 +1,376 @@
+:root {
+    --primary: #00f2fe;
+    --secondary: #4facfe;
+    --bg: #0f172a;
+    --card: rgba(30, 41, 59, 0.7);
+}
+
+body {
+    background: radial-gradient(circle at top right, #1e293b, #0f172a);
+    color: #f1f5f9;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.todo-container {
+    background: var(--card);
+    backdrop-filter: blur(12px);
+    width: 90%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+h1 span { color: var(--primary); text-shadow: 0 0 10px rgba(0, 242, 254, 0.5); }
+
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+input {
+    flex: 1;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid #334155;
+    padding: 12px;
+    border-radius: 12px;
+    color: white;
+    outline: none;
+}
+
+button#addBtn {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    color: #0f172a;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+ul { list-style: none; padding: 0; max-height: 300px; overflow-y: auto; }
+
+li {
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+    border-left: 4px solid var(--secondary);
+}
+
+li.completed {
+    opacity: 0.5;
+    text-decoration: line-through;
+    border-left-color: #64748b;
+}
+
+.delete-btn {
+    color: #f87171;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.footer-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.clear-all {
+    background: none;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    cursor: pointer;
+    border-radius: 5px;
+}
+/* Progress Bar Style */
+.progress-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    height: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 0 10px var(--primary);
+    transition: 0.5s ease;
+}
+
+/* Category Tags */
+.category-select {
+    background: #1e293b;
+    color: white;
+    border: 1px solid #334155;
+    padding: 10px;
+    border-radius: 12px;
+    margin-right: 5px;
+    outline: none;
+}
+
+.tag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.tag-work { background: #ef4444; color: white; }
+.tag-personal { background: #22c55e; color: white; }
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 5px;
+    transition: all 0.4s ease;
+    width: 40px; /* Initially only icon size */
+    overflow: hidden;
+    border: 1px solid transparent;
+}
+
+/* When active, expand the width */
+.search-container.active {
+    width: 100%;
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+}
+
+#searchInput {
+    width: 0;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: white;
+    padding: 0;
+    transition: all 0.4s ease;
+    opacity: 0;
+}
+
+.search-container.active #searchInput {
+    width: 100%;
+    padding: 0 15px;
+    opacity: 1;
+}
+
+.search-icon {
+    cursor: pointer;
+    font-size: 1.2rem;
+    min-width: 30px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.search-icon:hover {
+    transform: scale(1.1);
+}
+/* Search Wrapper to align it right */
+.search-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 5px 10px;
+    width: 35px;
+    transition: width 0.4s ease;
+    overflow: hidden;
+    border: 1px solid transparent;
+}
+
+.search-container.active {
+    width: 150px;
+    border-color: var(--primary);
+}
+
+#searchInput {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    width: 0;
+    transition: 0.3s;
+}
+
+.search-container.active #searchInput {
+    width: 100%;
+}
+
+/* Input Section Fix */
+.input-section {
+    display: flex;
+    flex-wrap: nowrap; /* Elements side by side irukkanum */
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.category-select {
+    width: auto;
+    background: #1e293b;
+    color: white;
+    border-radius: 8px;
+    padding: 5px;
+}
+.manual-progress-container {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px dashed rgba(0, 242, 254, 0.3);
+}
+
+.manual-progress-container p {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-bottom: 10px;
+}
+
+/* Custom Range Slider Styling */
+.slider {
+    appearance: none;         /* Standard Property */
+    -webkit-appearance: none;  /* For Chrome, Safari, Opera */
+    -moz-appearance: none;     /* For Firefox (Older versions) */
+    width: 90%;
+    height: 6px;
+    background: #334155;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+#rangeVal {
+    display: block;
+    margin-top: 8px;
+    font-weight: bold;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+.active-task-box {
+    font-size: 0.9rem;
+    color: var(--primary);
+    background: rgba(0, 242, 254, 0.05);
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-style: italic;
+    border-left: 3px solid var(--primary);
+    transition: 0.3s;
+}
+.active-task-box b {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 0 0 5px var(--primary);
+}
+#taskList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer; /* Hand icon for the whole row */
+    transition: 0.3s;
+}
+#taskList li:hover {
+    background: rgba(255, 255, 255, 0.08); /* Light highlight on hover */
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-grow: 1; /* Makes the text area take all space */
+} 
+li.completed {
+    text-decoration: line-through;
+    opacity: 0.3;
+}
+/* 1. Base Container Adjustments */
+.todo-container {
+    width: 95%; /* Mobile-la side gaps kammiya irukanum */
+    max-width: 500px; /* PC-la romba perusa aagaama irukka */
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 2. Responsive Queries for Mobile & Tablets */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem; /* Mobile-la header konjam chinna dhu */
+    }
+
+    .input-section {
+        flex-direction: column; /* Input, Category, Add button mela keela vara maari */
+        gap: 10px;
+    }
+
+    #taskInput, .category-select, #addBtn {
+        width: 100%; /* Mobile-la ellaamae full width-la irukanum */
+        margin: 0;
+    }
+
+    .active-task-box {
+        font-size: 0.8rem; /* Focussed task text size reduction */
+        padding: 12px;
+    }
+
+    #taskList li {
+        padding: 12px 10px; /* List items-kulla space adjust panrom */
+    }
+
+    .task-text {
+        font-size: 0.9rem;
+        max-width: 150px; /* Text overflow aagaama irukka */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+/* 3. Tablet View (Optional) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .todo-container {
+        width: 80%;
+    }
+}
